@@ -67,8 +67,8 @@ There will be no broken looking "flash" --- the delivery is smooth and polished.
 
 TopLevel is fast, transparent, and totally rewrites the rules of how you will create webpages.
 
-## Works Everywhere And Is 0.7 KB gzipped.
-(1.3 KB minified and 4.4 KB for the development version)
+## Works Everywhere And Is 0.6 KB gzipped.
+(1.2 KB minified and 4.4 KB for the development version)
 
 It Works On:
 

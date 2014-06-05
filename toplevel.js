@@ -40,23 +40,26 @@ document.write('<plaintext style=display:none>');
   // JavaScript micro-templating, similar to John Resig's implementation.
   // Underscore templating handles arbitrary delimiters, preserves whitespace,
   // and correctly escapes quotes within interpolated code.
-  function template(text) {
-    var render, settings = {
-      evaluate    : /<!--%([\s\S]+?)-->/g,
-      interpolate : /<!--=([\s\S]+?)-->/g,
-      escape      : /<!---([\s\S]+?)-->/g 
-    };
+  function WaveWand(text) {
+    var 
+      render,
+      // Combine delimiters into one regular expression via alternation.
+      matcher = new RegExp([
+       // escape
+       '<!---([\\s\\S]+?)-->',
 
-    // Combine delimiters into one regular expression via alternation.
-    var matcher = new RegExp([
-      settings.escape.source,
-      settings.interpolate.source,
-      settings.evaluate.source
-    ].join('|') + '|$', 'g');
+       // interpolate
+       '<!--=([\\s\\S]+?)-->',
 
-    // Compile the template source, escaping string literals appropriately.
-    var index = 0;
-    var source = "__p+='";
+       // evaluate
+       '<!--%([\\s\\S]+?)-->'
+     ].join('|') + '|$', 'g'),
+
+     // Compile the template source, escaping string literals appropriately.
+     index = 0,
+
+     source = "__p+='";
+
     text.replace(matcher, function(match, escape, interpolate, evaluate, offset) {
       source += text.slice(index, offset)
         .replace(escaper, function(match) { return '\\' + escapes[match]; });
@@ -97,7 +100,7 @@ document.write('<plaintext style=display:none>');
   // eventually loaded JS file.  We take this function, emit it
   // as a string, and then append it to the end of the rendered
   // document.
-  var payload = function() {
+  var alakazam = function() {
     var 
       DOMContentLoaded_event = document.createEvent("Event"),
       load_event = document.createEvent("Event");
@@ -121,13 +124,17 @@ document.write('<plaintext style=display:none>');
     var 
       // At this point, all the code we need to intepret is in one giant
       // <plaintext> blob.  We can just read it in and remove the node.
-      raw = document.body.removeChild(document.body.lastChild).textContent,
+      ordinaryText = document.body.removeChild(document.body.lastChild).textContent,
+
       // Then we pass it all off to underscore's templating library and append
       // our payload to the end.
-      copy = template(raw, {}) + "<script>(" + payload.toString() + ")();</script>";
+      presto = WaveWand(ordinaryText) + "<script>(" + alakazam.toString() + ")();</script>";
 
+    // For the curious:
+    // console.log(presto);
+    
     // and simply emit it.
-    document.write(copy);
+    document.write(presto);
 
     // and deregister ourselves.
     document.removeEventListener("DOMContentLoaded", abracadabra);
