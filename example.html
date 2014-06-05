@@ -1,0 +1,52 @@
+<script src='toplevel.js'></script>
+
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script>
+$(document).ready(function(){
+  document.body.innerHTML += "<p>jquery document.ready called</p>";
+});
+</script>
+
+<style>
+
+<!--% if (navigator.userAgent.search(/irefox/) !== -1) { %--> 
+	body{background:#fff}
+<!--% } else { %-->
+	body{background:#eee}
+<!--% } %-->
+
+</style>
+
+<body>
+<h2>View the source</h2>
+
+<p>Here is a random number: <!--= Math.random() --></p>
+
+The following image will never load:
+<!--% if (0) { %-->
+	<img src="3dglasses.jpg">
+<!--% } %-->
+
+<p>The following stylesheet will never be applied:</p>
+<!--% if (0) { %-->
+<style>
+	body{ background: green }
+</style>
+<!--% } %-->
+
+<p>The following javascript will never even attempt to be requested:</p>
+<!--% if (0) { %-->
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<!--% } %-->
+
+<style>
+.square { display: inline-block; text-align:center; padding: 1em;  background: black; color: white }
+</style>
+<p>Here are a few squares I'm putting in programmatically:</p>
+<!--% for(var ix = 0; ix < 5; ix++) { %-->
+	<span class='square'><!--= ix --></span>
+<!--% } %-->
+
+
+</body>
+
