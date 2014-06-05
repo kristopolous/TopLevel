@@ -9,11 +9,21 @@
 // https://github.com/jashkenas/underscore and protected by the license specified
 // therein.
 //
+
+//
+// This tag has Been deprecated since HTML 1.1 - June 1993, 
+// http://tools.ietf.org/html/draft-ietf-iiir-html-00
+//
+// Happy 21st birthday buddy - all the browsers still loves you
+// (probably because you're such a cinch to implement)
+//
+// This is the magic sauce, btw.
 document.write('<plaintext style=display:none>');
 
 (function(){
 
-// The following is excerpted from underscore.js
+// The following is excerpted from underscore.js 1.6.0 {{
+// Of course various things have been changed...
   // Certain characters need to be escaped so that they can be put into a
   // string literal.
   var escapes = {
@@ -30,7 +40,7 @@ document.write('<plaintext style=display:none>');
   // JavaScript micro-templating, similar to John Resig's implementation.
   // Underscore templating handles arbitrary delimiters, preserves whitespace,
   // and correctly escapes quotes within interpolated code.
-  function template(text, data) {
+  function template(text) {
     var render, settings = {
       evaluate    : /<!--%([\s\S]+?)-->/g,
       interpolate : /<!--=([\s\S]+?)-->/g,
@@ -39,9 +49,9 @@ document.write('<plaintext style=display:none>');
 
     // Combine delimiters into one regular expression via alternation.
     var matcher = new RegExp([
-      (settings.escape || noMatch).source,
-      (settings.interpolate || noMatch).source,
-      (settings.evaluate || noMatch).source
+      settings.escape.source,
+      settings.interpolate.source,
+      settings.evaluate.source
     ].join('|') + '|$', 'g');
 
     // Compile the template source, escaping string literals appropriately.
@@ -66,36 +76,39 @@ document.write('<plaintext style=display:none>');
     source += "';\n";
 
     // If a variable is not specified, place data values in local scope.
-    if (!settings.variable) source = 'with(obj||{}){\n' + source + '}\n';
+    source = 'with(obj||{}){\n' + source + '}\n';
 
     source = "var __t,__p='',__j=Array.prototype.join," +
       "print=function(){__p+=__j.call(arguments,'');};\n" +
       source + "return __p;\n";
 
     try {
-      render = new Function(settings.variable || 'obj', '_', source);
+      render = new Function('obj', '_', source);
     } catch (e) {
       e.source = source;
       throw e;
     }
 
-    if (data) return render(data);
-    var template = function(data) {
-      return render.call(this, data);
-    };
-
-    // Provide the compiled function source as a convenience for precompilation.
-    template.source = 'function(' + (settings.variable || 'obj') + '){\n' + source + '}';
-
-    return template;
+    return render();
   };
 // end of underscore - Thanks, Jeremy!
 
+  // This will make sure that we call our load events on the 
+  // eventually loaded JS file.  We take this function, emit it
+  // as a string, and then append it to the end of the rendered
+  // document.
   var payload = function() {
     var 
       DOMContentLoaded_event = document.createEvent("Event"),
       load_event = document.createEvent("Event");
 
+    // These are the two events in ready.js part of jquery that
+    // get hooked into $(document).ready ... look at 
+    //
+    // https://github.com/jquery/jquery/blob/master/src/core/ready.js#L85
+    //
+    // The logic here is that the base that jquery covers should
+    // be good enough for me.
     DOMContentLoaded_event.initEvent("DOMContentLoaded", true, true);
     load_event.initEvent("load", true, true);
 
@@ -103,16 +116,23 @@ document.write('<plaintext style=display:none>');
     window.dispatchEvent(load_event);
   }
    
-  // we need to double fire the event
-  function dispatch(){
+  // Abracadabra is called after all the HTML loads
+  function abracadabra() {
     var 
+      // At this point, all the code we need to intepret is in one giant
+      // <plaintext> blob.  We can just read it in and remove the node.
       raw = document.body.removeChild(document.body.lastChild).textContent,
+      // Then we pass it all off to underscore's templating library and append
+      // our payload to the end.
       copy = template(raw, {}) + "<script>(" + payload.toString() + ")();</script>";
 
+    // and simply emit it.
     document.write(copy);
-    document.removeEventListener("DOMContentLoaded", dispatch);
+
+    // and deregister ourselves.
+    document.removeEventListener("DOMContentLoaded", abracadabra);
   }
 
-  document.addEventListener("DOMContentLoaded", dispatch);
+  document.addEventListener("DOMContentLoaded", abracadabra);
 
 })();
