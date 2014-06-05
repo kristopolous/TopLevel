@@ -78,15 +78,15 @@ document.write('<plaintext style=display:none>');
 
     return template;
   };
-// end of underscore
+// end of underscore - Thanks, Jeremy!
 
   var payload = function() {
     var 
       DOMContentLoaded_event = document.createEvent("Event"),
       load_event = document.createEvent("Event");
 
-    DOMContentLoaded_event.initEvent("DOMContentLoaded", true, true)
-    load_event.initEvent("load", true, true)
+    DOMContentLoaded_event.initEvent("DOMContentLoaded", true, true);
+    load_event.initEvent("load", true, true);
 
     document.dispatchEvent(DOMContentLoaded_event);
     window.dispatchEvent(load_event);
@@ -98,7 +98,7 @@ document.write('<plaintext style=display:none>');
       raw = document.body.removeChild(document.body.lastChild).textContent,
       copy = template(raw, {}) + "<script>(" + payload.toString() + ")();</script>";
 
-    document.write( copy );
+    document.write(copy);
     document.removeEventListener("DOMContentLoaded", dispatch);
   }
 
