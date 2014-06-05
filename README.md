@@ -95,7 +95,7 @@ That is to say, a regular HTML comment block with the first character being eith
 
 ### Easily Enable TopLevel to Use Any Third-Party Library
 
-Everything after the `<script src="toplevel.js"></script>` gets interpreted.  If you want TopLevel to use a say, an MV* framework, simply include it before TopLevel, at the top of the HTML file like so:
+Everything after the `<script src="toplevel.js"></script>` gets interpreted.  If you want TopLevel to use a say, an MV framework, simply include it before TopLevel, at the top of the HTML file like so:
 
     <!doctype html>
     <html>
@@ -103,3 +103,10 @@ Everything after the `<script src="toplevel.js"></script>` gets interpreted.  If
         ... dependencies you want to expose to TopLevel ...
         <script src="toplevel.js"></script>
         ...
+
+#### License & Contributions
+
+ * BSD licensed
+ * Send any [pull request](https://github.com/kristopolous/TopLevel/pulls)!
+ * File any [issue](https://github.com/kristopolous/TopLevel/issues)!
+ * And hit me up on the [mailing list](https://groups.google.com/forum/?hl=en#!forum/toplevel-js)!
