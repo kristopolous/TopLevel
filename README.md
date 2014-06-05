@@ -1,20 +1,31 @@
 TopLevel
 ========
 
-TopLevel allows you to template your html at the top level, like so:
+TopLevel enables you to template your HTML, CSS, and Javascript at the Top Level like so:
 
-    <!--% if ( browser() == "broken" ) { -->
-      <link rel="stylesheet" href="broken.css">
-    <!--% } -->
+    <!doctype html>
+    <html>
+      <head>
+        <script src="YourBrowserCheckCode.js"></script>
+        <script src="toplevel.js"></script>
 
-The stuff inside the blocks **will not load** unless the branch is run.
+        <!--% if ( CheckBrowser() == "broken" ) { -->
+          <link rel="stylesheet" href="broken.css">
+        <!--% } else { -->
+          ...
+        <!--% } -->
+        ...
 
-This is not the old solution of injecting stuff **after** a page load.
+The stylesheet above **will never load** unless the branch is satisfied.
 
-This is also not a solution of **downloading and then removing** ... the block above will never render unless
-the function `browser()` returns the string `"broken"`.
+ * This Is Not a solution of injecting stuff *after a page load*.
+ * This Is Not a solution of *downloading and then removing* things from the DOM.
 
-Here is another simple example:
+**The HTML code including the stylesheet will never be interpreted by the browser unless the function `CheckBrowser()` returns the string `"broken"`. ... seriously ...**
+
+<hr>
+
+Another example:
 
     <!doctype html>
     <html>
@@ -32,11 +43,11 @@ Here is another simple example:
 
     </html>
 
-When you load the page in the browser and then go into the inspector you will sure enough see 10 paragraph blocks with numbers inside of them.
+When you load the page in the browser you will see 10 paragraph blocks with numbers inside of them.
 
-### This is a total game-changer.
+### This Is A Total Game-Changer.
 
-You can put toplevel stanzas inside of css, html, even tags.
+You can put TopLevel stanzas inside of CSS, HTML blocks, even HTML attributes.
 Take this for example:
 
     <div id="header">
@@ -45,33 +56,49 @@ Take this for example:
 
 Only one image will load - the right one for the browser.  
 
-There will be no broken "flash" of html --- this is instant.
+There will be no broken looking "flash" --- the delivery is smooth and polished.
 
-### All your JS still works.
+### All Your JS Still Works.
 
-JQuery CSS selectors, underscore, everything stays in tact.  TopLevel is fast, transparent, and totally rewrites the rules of how you can create webpages.
+ * `$(document).ready`
+ * CSS selectors
+ * Underscore
+ * AMD Loaders, CoffeeScript, Knockout, Angular, Socket.io, Backbone, D3, yes --- all of them.
 
-## It works everywhere and takes up 0.8 KB.
+TopLevel is fast, transparent, and totally rewrites the rules of how you will create webpages.
 
-Opera, Chrome, Firefox, IE, Safari, Dolphin, Seamonkey, Chromium --- it's all in and it's all there.
+## Works Everywhere And Is 0.8 KB.
 
-### Add this massive functionality in a single include with under a kilobyte of gzipped code.
+Tested And Works On:
 
-## Syntax
+ * Opera
+ * Chrome
+ * Firefox
+ * Safari
+ * IE 
+ * Dolphin
+ * Seamonkey
+ * Chromium 
+ 
+They're all in and all the features are there.
 
-toplevel takes its templating right from [underscore](http://underscorejs.org/). The functionality is identical with a slight change of syntax.
+#### Add this massive functionality in a single include with under a kilobyte of gzipped code.
+
+### Uses Underscore's Templating Engine
+
+TopLevel takes its templating right from [underscore](http://underscorejs.org/). The functionality is identical with a slight change of syntax.
 
 > Template functions can both interpolate variables, using `<!--= … -->`, as well as execute arbitrary JavaScript code, with `<!--% … -->`. If you wish to interpolate a value, and have it be HTML-escaped, use `<!--- … -->`.
 
-That is to say, a regular html comment block with the first character being either `=`, `%`, or `-`.  Keep this in mind, and refer to the [underscore documentation](http://underscorejs.org/#template) for further information!
+That is to say, a regular HTML comment block with the first character being either `=`, `%`, or `-`.  Keep this in mind, and refer to the [underscore documentation](http://underscorejs.org/#template) for further information!
 
-### Including third-party javascript libraries
+### Easily Enable TopLevel to Use Any Third-Party Library
 
-Everything after the `<script src="toplevel.js></script>` gets interpreted.  If you want toplevel to use say, `angular.js`, simply include it before declaring toplevel, at the top of the HTML file like so:
+Everything after the `<script src="toplevel.js"></script>` gets interpreted.  If you want TopLevel to use a say, an MV* framework, simply include it before TopLevel, at the top of the HTML file like so:
 
     <!doctype html>
     <html>
       <head>
-        ... dependencies you want to expose to toplevel ...
+        ... dependencies you want to expose to TopLevel ...
         <script src="toplevel.js"></script>
         ...
