@@ -67,15 +67,16 @@ There will be no broken looking "flash" --- the delivery is smooth and polished.
 
 TopLevel is fast, transparent, and totally rewrites the rules of how you will create webpages.
 
-## Works Everywhere And Is 0.8 KB.
+## Works Everywhere And Is 0.8 KB gzipped.
+(1.4 KB minified and 3.7 development)
 
 Tested And Works On:
 
- * Opera
  * Chrome
  * Firefox
  * Safari
  * IE 
+ * Opera
  * Dolphin
  * Seamonkey
  * Chromium 
