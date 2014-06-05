@@ -59,8 +59,8 @@ Opera, Chrome, Firefox, IE, Safari, Dolphin, Seamonkey, Chromium --- it's all in
 
 ## Syntax
 
-toplevel takes its templating right from [http://underscorejs.org/](underscore). The functionality is identical with a slight change of syntax.
+toplevel takes its templating right from [underscore](http://underscorejs.org/). The functionality is identical with a slight change of syntax.
 
 > Template functions can both interpolate variables, using `<!--= … -->`, as well as execute arbitrary JavaScript code, with `<!--% … -->`. If you wish to interpolate a value, and have it be HTML-escaped, use `<!--- … -->`.
 
-That is to say, a regular html comment block with the first character being either `=`, `%`, or `-`.  It's that simple.
+That is to say, a regular html comment block with the first character being either `=`, `%`, or `-`.  Keep this in mind, and refer to the [underscore documentation](http://underscorejs.org/#template) for further information!
