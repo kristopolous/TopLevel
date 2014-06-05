@@ -21,7 +21,7 @@ document.write('<plaintext style=display:none>');
   // and correctly escapes quotes within interpolated code.
   function template(text, data) {
     var render, settings = {
-      evaluate    : /<!--%([\s\S]+?)%-->/g,
+      evaluate    : /<!--%([\s\S]+?)-->/g,
       interpolate : /<!--=([\s\S]+?)-->/g,
       escape      : /<!---([\s\S]+?)-->/g 
     };
@@ -80,29 +80,28 @@ document.write('<plaintext style=display:none>');
   };
 // end of underscore
 
-function payload() {
-  var 
-    DOMContentLoaded_event = document.createEvent("Event"),
-    load_event = document.createEvent("Event");
+  var payload = function() {
+    var 
+      DOMContentLoaded_event = document.createEvent("Event"),
+      load_event = document.createEvent("Event");
 
-  DOMContentLoaded_event.initEvent("DOMContentLoaded", true, true)
-  load_event.initEvent("load", true, true)
+    DOMContentLoaded_event.initEvent("DOMContentLoaded", true, true)
+    load_event.initEvent("load", true, true)
 
-  document.dispatchEvent(DOMContentLoaded_event);
-  window.dispatchEvent(load_event);
-}
- 
-// we need to double fire the event
-function dispatch(){
-  var m = Array.prototype.slice.call(document.all, -1)[0].textContent;
-  m += "<script>" + payload.toString() + ";payload();</script>";
-  console.log(m);
-  copy = template(m, {}) ;
-  document.write( copy );
+    document.dispatchEvent(DOMContentLoaded_event);
+    window.dispatchEvent(load_event);
+  }
+   
+  // we need to double fire the event
+  function dispatch(){
+    var 
+      raw = document.body.removeChild(document.body.lastChild).textContent,
+      copy = template(raw, {}) + "<script>(" + payload.toString() + ")();</script>";
 
-  document.removeEventListener("DOMContentLoaded", dispatch);
-}
+    document.write( copy );
+    document.removeEventListener("DOMContentLoaded", dispatch);
+  }
 
-document.addEventListener("DOMContentLoaded", dispatch);
+  document.addEventListener("DOMContentLoaded", dispatch);
 
 })();
