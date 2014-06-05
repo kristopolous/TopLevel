@@ -64,3 +64,14 @@ toplevel takes its templating right from [underscore](http://underscorejs.org/).
 > Template functions can both interpolate variables, using `<!--= … -->`, as well as execute arbitrary JavaScript code, with `<!--% … -->`. If you wish to interpolate a value, and have it be HTML-escaped, use `<!--- … -->`.
 
 That is to say, a regular html comment block with the first character being either `=`, `%`, or `-`.  Keep this in mind, and refer to the [underscore documentation](http://underscorejs.org/#template) for further information!
+
+### Including third-party javascript libraries
+
+Everything after the `<script src="toplevel.js></script>` gets interpreted.  If you want toplevel to use say, `angular.js`, simply include it before declaring toplevel, at the top of the HTML file like so:
+
+    <!doctype html>
+    <html>
+      <head>
+        ... dependencies you want to expose to toplevel ...
+        <script src="toplevel.js"></script>
+        ...

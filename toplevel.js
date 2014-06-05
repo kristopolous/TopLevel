@@ -102,6 +102,6 @@ document.write('<plaintext style=display:none>');
     document.removeEventListener("DOMContentLoaded", dispatch);
   }
 
-  document.addEventListener("DOMContentLoaded", dispatch);
+//  document.addEventListener("DOMContentLoaded", dispatch);
 
 })();
