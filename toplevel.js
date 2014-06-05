@@ -11,13 +11,24 @@
 //
 
 //
-// This tag has Been deprecated since HTML 1.1 - June 1993, 
+// This tag has been deprecated since HTML 1.1 - June 1993. 
 // http://tools.ietf.org/html/draft-ietf-iiir-html-00
 //
-// Happy 21st birthday buddy - all the browsers still loves you
-// (probably because you're such a cinch to implement)
+// Happy 21st Birthday 
+//   < plaintext >
+//                   ._.
+//    .  :  .  ,    /#  \
+//    :  ^  ^  ^   |#    |
+//   _i__i__i__i_   \#  /
+//  ( Deprecated )   "/"
+//  |~.~.~.~.~.~.|   ( 
+//  (,,21,Years,,)    \
+//
+// All the browsers still love you because 
+// you're just such a cinch to implement.
 //
 // This is the magic sauce, btw.
+//
 document.write('<plaintext style=display:none>');
 
 (function(){
