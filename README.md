@@ -83,6 +83,12 @@ It Works On:
  
 They're all in and all the features are there.
 
+Proof? Ok, sure!
+
+<a href="http://i.imgur.com/xGr5XTm.png"><img src="http://i.imgur.com/xGr5XTml.jpg"></a>
+
+You're welcome.
+
 #### Add this massive functionality in a single include with under a kilobyte of gzipped code.
 
 ### Uses Underscore's Templating Engine
@@ -95,7 +101,7 @@ That is to say, a regular HTML comment block with the first character being eith
 
 ### Easily Enable TopLevel to Use Any Third-Party Library
 
-Everything after the `<script src="toplevel.js"></script>` gets interpreted.  If you want TopLevel to use a say, an MV framework, simply include it before TopLevel, at the top of the HTML file like so:
+Everything after the `<script src="toplevel.js"></script>` gets interpreted.  If you want TopLevel to use a say, an MV* framework, simply include it before TopLevel, at the top of the HTML file like so:
 
     <!doctype html>
     <html>
