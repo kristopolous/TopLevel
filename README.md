@@ -51,8 +51,16 @@ There will be no broken "flash" of html --- this is instant.
 
 JQuery CSS selectors, underscore, everything stays in tact.  TopLevel is fast, transparent, and totally rewrites the rules of how you can create webpages.
 
-### It works everywhere and takes up 0.8 KB.
+## It works everywhere and takes up 0.8 KB.
 
 Opera, Chrome, Firefox, IE, Safari, Dolphin, Seamonkey, Chromium --- it's all in and it's all there.
 
-Add this massive functionality in a single include with under a kilobyte of gzipped code.
+### Add this massive functionality in a single include with under a kilobyte of gzipped code.
+
+## Syntax
+
+toplevel takes its templating right from [http://underscorejs.org/](underscore). The functionality is identical with a slight change of syntax.
+
+> Template functions can both interpolate variables, using `<!--= … -->`, as well as execute arbitrary JavaScript code, with `<!--% … -->`. If you wish to interpolate a value, and have it be HTML-escaped, use `<!--- … -->`.
+
+That is to say, a regular html comment block with the first character being either `=`, `%`, or `-`.  It's that simple.
