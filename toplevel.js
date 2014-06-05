@@ -1,3 +1,14 @@
+//
+// toplevel.js
+//
+// TopLevel enables you to template your HTML, CSS, and Javascript at the Top Level
+// (c) 2014 chris mckenzie. see LICENSE for more details.
+// https://github.com/kristopolous/TopLevel for the latest version.
+//
+// Parts of this code use Jeremy Ashkenas' underscore library, available at 
+// https://github.com/jashkenas/underscore and protected by the license specified
+// therein.
+//
 document.write('<plaintext style=display:none>');
 
 (function(){
