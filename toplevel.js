@@ -16,11 +16,11 @@
 //
 // Happy 21st Birthday 
 //   < plaintext >
-//                   ._.
+//                   .-.
 //    .  :  .  ,    /#  \
-//    :  ^  ^  ^   |#    |
-//   _i__i__i__i_   \#  /
-//  ( Deprecated )   "/"
+//    :  ^  ^  ^   :#    :
+//   _i__i__i__i_   \   /
+//  ( Deprecated )   `/'
 //  |~.~.~.~.~.~.|   ( 
 //  (,,21,Years,,)    \
 //
@@ -144,8 +144,11 @@ document.write('<plaintext style=display:none>');
     // For the curious:
     // console.log(presto);
     
-    // and simply emit it.
+    // emit it.
     document.write(presto);
+
+    // stop the spinner in ff
+    document.close();
 
     // and deregister ourselves.
     document.removeEventListener("DOMContentLoaded", abracadabra);
